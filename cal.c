@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
+
 #define PI 3.14159265
+#define MAXLEN 100
 
 // Polar form complex number
 struct polar {
@@ -25,7 +28,19 @@ struct rect polar_to_rect(struct polar polar_num) {
 int main() {
   struct polar test_polar = {10, PI/3};
   struct rect converted = polar_to_rect(test_polar);
-  printf("%f %f", converted.re, converted.im); 
-
+  printf("%f %f\n", converted.re, converted.im); 
+  
+  int c;
+  int i = 0;
+  int ps[MAXLEN]; // postfix string
+  while ((c = getchar()) != EOF){
+    if ('0' <= c && c <= '9'){
+      if (ps != MAXLEN)
+        ps[i++] = c; 
+      else
+        printf("Max expression length reached.  Exiting program...");
+        exit(0);
+    } 
+  }
   return 0;
 }
